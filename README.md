@@ -1,5 +1,5 @@
 <h1 align="center">
-  🚀 Saurav's Website
+  Saurav's Website
 </h1>
 
 Work In Progress
