@@ -6,4 +6,4 @@ Work In Progress
 
 ## Info
 
-- Made using Astro JS 🚀
+- I am building a website using Astro JS 🚀 a new web framework. Check back for updates!
