@@ -1,49 +1,53 @@
 ---
 import PageLayout from "@/layouts/Base";
 import { Image } from "@astrojs/image/components";
-import aboutImg from "../assets/about-astro.png";
+import aboutImg from "../assets/parrot-party.gif";
 
 const meta = {
 	title: "About",
-	description: "I'm a starter theme for Astro.build",
+	description: "About me page",
 };
+const width = "74";
 ---
 
 <PageLayout meta={meta}>
-	<div class="space-y-6">
+	<div class="prose prose-base prose-cactus prose-th:before:content-none">
 		<h1 class="title">About</h1>
+		<p>Hello! Welcome to my website!</p>
 		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
+			My name is Saurav Chhapawala. I was raised in SoCal and pursued a
+			degree in Computer Science. I hope you find my website interesting
+			and see some cool things!
 		</p>
-		<div class="flex justify-center">
-			<Image
-				src={aboutImg}
-				alt="A cartoon cactus looking at the 'Astro.build' logo"
-				loading="eager"
-			/>
-		</div>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
 		<p>
-			Clone or fork my
+			I am a software engineer looking to further professional development
+			and am passionate about learning and creating new things using my
+			skills. Some of my other interests are 3D Printing and Modeling,
+			Cars, and Hiking.
+		</p>
+		<p>
+			I recieved my Bachelors of Science in Computer Science at California
+			State University Long Beach (class of 2021)!
+		</p>
+		<p>
+			Check out my Github
 			<a
 				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
+				href="https://github.com/SauravC99?tab=repositories"
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="github repository"
 			>
 				repo
-			</a> if you like me!
+			</a> to see more of what I'm working on!
 		</p>
+		<div class="flex justify-center">
+			<Image
+				src={aboutImg}
+				alt="PARTY PARROT"
+				loading="eager"
+				width={width}
+			/>
+		</div>
 	</div>
 </PageLayout>
