@@ -1,5 +1,5 @@
 ---
-import { MENU_LINKS } from "@/data/constants";
+import { MENU_LINKS_FOOTER } from "@/data/constants";
 
 const year = new Date().getFullYear();
 ---
@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
 		class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-gray-500"
 	>
 		{
-			MENU_LINKS.map((link) => (
+			MENU_LINKS_FOOTER.map((link) => (
 				<a
 					href={link.path}
 					class="sm:hover:text-textColor px-4 py-2 sm:px-2 sm:py-0 sm:hover:underline"
