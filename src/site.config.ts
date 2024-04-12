@@ -42,6 +42,21 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 	},
 ];
 
+export const footerSocialLinks: Array<{ title: string; path: string }> = [
+	{
+		title: "LinkedIn",
+		path: "https://www.linkedin.com/in/saurav-chhapawala/",
+	},
+	{
+		title: "Github",
+		path: "https://github.com/SauravC99",
+	},
+	{
+		title: "Email",
+		path: "mailto:saurav.chhapawala@gmail.com",
+	},
+]
+
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 	// One dark, one light theme => https://expressive-code.com/guides/themes/#available-themes
