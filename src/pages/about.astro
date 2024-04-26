@@ -1,53 +1,46 @@
 ---
-import PageLayout from "@/layouts/Base";
-import { Image } from "@astrojs/image/components";
-import aboutImg from "../assets/parrot-party.gif";
+import aboutImg from "@/assets/parrot-party.gif";
+import PageLayout from "@/layouts/Base.astro";
+import { Image } from "astro:assets";
 
 const meta = {
-	title: "About",
 	description: "About me page",
+	title: "About",
 };
-const width = "74";
 ---
 
 <PageLayout meta={meta}>
-	<div class="prose prose-base prose-cactus prose-th:before:content-none">
+	<div class="space-y-6 text-[1.05rem]">
 		<h1 class="title">About</h1>
-		<p>Hello! Welcome to my website!</p>
+		<p>Hello! Welcome to my website :)</p>
 		<p>
-			My name is Saurav Chhapawala. I was raised in SoCal and pursued a
-			degree in Computer Science. I hope you find my website interesting
-			and see some cool things!
+			My name is Saurav. I was raised in SoCal and pursued a degree in Computer Science. I hope you
+			find my website interesting and see some cool things!
 		</p>
 		<p>
-			I am a software engineer looking to further professional development
-			and am passionate about learning and creating new things using my
-			skills. Some of my other interests are 3D Printing and Modeling,
-			Cars, and Hiking.
+			I am a Software Engineer looking to further professional development and am passionate about
+			learning and creating new things using my skills.<br />
+			Some of my other interests are 3D Printing and 3D Modeling, Cars, and Hiking.
 		</p>
 		<p>
-			I recieved my Bachelors of Science in Computer Science at California
-			State University Long Beach (class of 2021)!
+			I recieved my Bachelors of Science in Computer Science at California State University Long
+			Beach, class of 2021. (Go Beach)!!!
 		</p>
 		<p>
 			Check out my
 			<a
-				class="cactus-link inline-block"
-				href="https://github.com/SauravC99?tab=repositories"
-				target="_blank"
-				rel="noopener noreferrer"
 				aria-label="github repository"
+				class="cactus-link inline-block"
+				href="https://github.com/SauravC99"
+				rel="noopener noreferrer"
+				target="_blank"
 			>
 				Github
 			</a> repo to see more of what I'm working on!
 		</p>
+		<br />
 		<div class="flex justify-center">
-			<Image
-				src={aboutImg}
-				alt="PARTY PARROT"
-				loading="eager"
-				width={width}
-			/>
+			<Image alt="PARTY PARROT" fetchpriority="high" loading="eager" src={aboutImg} width="74" />
 		</div>
 	</div>
 </PageLayout>
