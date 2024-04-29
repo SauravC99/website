@@ -40,6 +40,10 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 		title: "Blog",
 		path: "/posts/",
 	},
+	{
+		title: "Programs",
+		path: "/programs/"
+	}
 ];
 
 export const footerSocialLinks: Array<{ title: string; path: string }> = [

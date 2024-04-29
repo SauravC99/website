@@ -1,0 +1,32 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+---
+
+<PageLayout meta={{ title: "Interactive Programs" }}>
+	<h1 class="title mb-6"><center>Interactive Program Demos</center></h1>
+	<br />
+	<body>
+		<center>
+			<ul class="space-y-4">
+				<li>
+					<a
+						class="cactus-link inline-block text-[0.98rem]"
+						data-astro-prefetch
+						href="/programs/genetic-algorithm"
+					>
+						Genetic Algorithm
+					</a>
+				</li>
+				<li>
+					<a
+						class="cactus-link inline-block text-[0.98rem]"
+						data-astro-prefetch
+						href="/programs/visualsort/"
+					>
+						VisualSort
+					</a>
+				</li>
+			</ul>
+		</center>
+	</body>
+</PageLayout>
