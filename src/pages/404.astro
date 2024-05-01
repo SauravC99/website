@@ -1,23 +1,38 @@
 ---
-import PageLayout from "@/layouts/Base";
-import { Image } from "@astrojs/image/components";
-import aboutImg from "../assets/about-astro.png";
+import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	title: "Oops! You found a missing page!",
 	description: "Oops! It looks like this page is lost in space!",
+	title: "Oops! You found a missing page!",
 };
 ---
 
 <PageLayout meta={meta}>
 	<h1 class="title mb-6">404 | Oops something went wrong</h1>
-	<p class="mb-8">Please use the navigation to find your way back</p>
+	<p class="mb-16">Please use the navigation to find your way back</p>
 	<div class="my-4 grid justify-center">
-		<Image
-			class="rotate-180"
-			src={aboutImg}
-			alt="A cartoon cactus looking at the 'Astro.build' logo"
-			loading="eager"
-		/>
+		<svg
+			width="300px"
+			height="300px"
+			viewBox="0 0 36 36"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			aria-hidden="true"
+			role="img"
+			class="iconify --twemoji"
+			preserveAspectRatio="xMidYMid meet"
+			><path
+				fill="#FFCC4D"
+				d="M36 18c0 9.941-8.059 18-18 18S0 27.941 0 18S8.059 0 18 0s18 8.059 18 18"></path><path
+				fill="#664500"
+				d="M20.001 13a1 1 0 0 1-.987-1.165C19.407 9.471 21.584 5 27 5a1 1 0 1 1 0 2c-5.095 0-5.979 4.94 5.165-4.589 4.892c-2.335 0-3.87-.997-3.964-1.06a1 1 0 0 1 1.11-1.664c.099.0697zm13.181 0c-1.172 0-2.545-.251-4.038-.998a1 1 0 289a.997.997 0 0 1-.278 1.379c-.096.063-1.631 1.06-3.965 1.06zM26.001 27a.998.998 0 0 1-.801-.4c-.025-.034-2.782-3.6-7.2-3.6c-4.417 0-7.174 3.566-7.202 3.603a1.003 1.003 0 0 1-1.4.194A.998.998 0 9.2 25.4c.135-.18 3.362-4.4 8.8-4.4s8.665 4.221 8.8 4.4a.998.998 0 0 1-.799 1.6z"
+			></path><path
+				fill="#F5F8FA"
+				d="M15.391 20.08a.997.997 0 0 0-1.239.39l-5 8A1 1 0 0 0 10 30h3a.999.999 0 0 0 .97-.758l2-8a1 1 0 0 0-.579-1.162zm11.457 8.39l-5-8a.998.998 0 0 0-1.817.772l2 8c.111.446.51.758.969.758h3a1 1 0 0 0 .848-1.53z"
+			></path><path
+				fill="#E1E8ED"
+				d="M31.982 30.178c.003-.06.018-.117.018-.178c0-1.656-1.344-3-3-3a2.996 2.996 0 0 0-2.473 1.305A4 4 0 1 0 25 36a3.994 3.994 0 0 0 3.29-1.731A2.995 2.995 0 0 0 11 36a4 4 0 0 0 0-8z"
+			></path>
+		</svg>
 	</div>
 </PageLayout>
