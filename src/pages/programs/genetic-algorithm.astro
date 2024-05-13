@@ -1,0 +1,345 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+---
+
+<PageLayout meta={{ title: "Genetic Algorithm" }}>
+	<h1 class="title mb-6"><center>N Queens Problem using a Genetic Algorithm</center></h1>
+	<center>
+		<div>
+			Check out the write up <a class="cactus-link" href="/posts/genetic-algorithm">here</a>!
+		</div>
+	</center>
+	<br />
+	<center>
+		<body>
+			<label for="inputN">Enter number of Queens (N) (default 4): </label>
+			<input type="number" id="inputN" />
+			<br /><br />
+			<button class="sm:hover:text-link" id="button">>>> Go <<<</button>
+			<br /><br /><hr /><br />
+			<div id="output"></div>
+			<span id="wait"></span>
+			<br />
+			<div style="text-align: center;" id="states">
+				<ul style="display: inline;" class="items-center gap-x-6">
+					<li hidden style="display: inline-block; padding: 1%;" id="state1"></li>
+					<li hidden style="display: inline-block; padding: 1%;" id="state2"></li>
+					<li hidden style="display: inline-block; padding: 1%;" id="state3"></li>
+					<li hidden style="display: inline-block; padding: 1%;" id="state4"></li>
+					<li hidden style="display: inline-block; padding: 1%;" id="state5"></li>
+					<li hidden style="display: inline-block; padding: 1%;" id="state6"></li>
+				</ul>
+			</div>
+			<br />
+			<div id="loadingPart"></div>
+			<br />
+			<div id="loadingDots"></div>
+			<br />
+			<div style="text-align: center;">
+				<ul style="display: inline-flex;" class="items-center gap-x-6">
+					<li hidden class="space-y-4 text-[x-large]" id="finalBoard"></li>
+				</ul>
+			</div>
+			<br /><br />
+			<button hidden class="text-[x-large] underline sm:hover:text-link" id="restart"
+				>>>> Restart <<<</button
+			>
+
+			<script>
+				class Board {
+					n_queen: number;
+					fit: number;
+					constructor(n) {
+						this.n_queen = n;
+						this.fit = 0;
+						this.map = [];
+
+						for (let i = 0; i < this.n_queen; i++) {
+							this.map[i] = [];
+							for (let j = 0; j < this.n_queen; j++) {
+								this.map[i][j] = 0;
+							}
+						}
+
+						for (let i = 0; i < this.n_queen; i++) {
+							let j = Math.floor(Math.random() * this.n_queen);
+							this.map[i][j] = 1;
+						}
+					}
+					fitness() {
+						this.fit = 0;
+						for (let i = 0; i < this.n_queen; i++) {
+							for (let j = 0; j < this.n_queen; j++) {
+								if (this.map[i][j] == 1) {
+									for (let k = 1; k < this.n_queen - i; k++) {
+										if (this.map[i + k][j] == 1) {
+											this.fit += 1;
+										}
+										if (j - k >= 0 && this.map[i + k][j - k] == 1) {
+											this.fit += 1;
+										}
+										if (j + k < this.n_queen && this.map[i + k][j + k] == 1) {
+											this.fit += 1;
+										}
+									}
+								}
+							}
+						}
+					}
+					getFitness() {
+						return this.fit;
+					}
+					solve() {
+						let mat = [];
+						let res = [];
+						for (let i = 0; i < this.n_queen; i++) {
+							mat[i] = [];
+							for (let j = 0; j < this.n_queen; j++) {
+								mat[i][j] = 0;
+							}
+						}
+
+						function nQueen(mat, row) {
+							if (row === mat.length) {
+								res.push([]);
+								for (let i = 0; i < mat.length; i++) {
+									res[res.length - 1].push(mat[i].join(""));
+								}
+								return;
+							}
+
+							for (let i = 0; i < mat.length; i++) {
+								if (isSafe(mat, row, i)) {
+									mat[row][i] = 1;
+									nQueen(mat, row + 1);
+									mat[row][i] = 0;
+								}
+							}
+						}
+
+						function isSafe(mat, row, col) {
+							for (let i = row - 1; i >= 0; i--) {
+								if (mat[i][col] === 1) return false;
+							}
+							for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+								if (mat[i][j] === 1) return false;
+							}
+							for (let i = row - 1, j = col + 1; i >= 0 && j < mat.length; i--, j++) {
+								if (mat[i][j] === 1) return false;
+							}
+							return true;
+						}
+
+						nQueen(mat, 0);
+
+						let random = Math.floor(Math.random() * res.length);
+						this.map = res[random];
+					}
+					show() {
+						var a = "<p># ";
+						for (let i = 0; i < this.n_queen; i++) {
+							a += "= ";
+						}
+						a += "#</p>";
+
+						for (let i = 0; i < this.n_queen; i++) {
+							a += "<p>| ";
+							for (let j = 0; j < this.n_queen; j++) {
+								if (this.map[i][j] == 1) {
+									a += "Q" + " ";
+								} else {
+									a += "-" + " ";
+								}
+							}
+							a += "|</p>";
+						}
+
+						a += "<p># ";
+						for (let i = 0; i < this.n_queen; i++) {
+							a += "= ";
+						}
+						a += "#</p><br />";
+						a += "Fitness: " + this.getFitness();
+
+						return a;
+					}
+				}
+				function handleClick() {
+					var input = document.getElementById("inputN").value || 4;
+					var output = document.getElementById("output");
+
+					var stateList = Array.from(document.querySelectorAll("#states>ul>li"));
+
+					if (input < 1) {
+						notSupported(output);
+					} else if (input == 1) {
+						solveOne(output, stateList);
+					} else if (input == 2 || input == 3) {
+						noSolutions(output, input, stateList);
+					} else if (input > 8) {
+						waitRefresh(output);
+					} else {
+						updateOutput(output, input, stateList);
+					}
+				}
+				function updateOutput(output, num, stateList) {
+					let boards = [
+						new Board(num),
+						new Board(num),
+						new Board(num),
+						new Board(num),
+						new Board(num),
+						new Board(num),
+					];
+
+					document.getElementById("button")?.setAttribute("disabled", "");
+
+					output.innerHTML = "<p>Starting States:</p>";
+					for (let i = 0; i < boards.length; i++) {
+						boards[i].fitness();
+
+						stateList[i].innerHTML = boards[i].show();
+						stateList[i].hidden = false;
+					}
+
+					let loading = document.getElementById("loadingPart");
+					loading.innerHTML = "<p>Working, please wait</p>";
+
+					let dotLoading = document.getElementById("loadingDots");
+					let dots = window.setInterval(function () {
+						if (dotLoading.innerHTML.length > 18) {
+							dotLoading.innerHTML = ".";
+						} else {
+							dotLoading.innerHTML += ".";
+						}
+					}, 200);
+
+					setTimeout(
+						function () {
+							loading.innerHTML = "<p>SOLVED!</p>";
+							loading?.setAttribute("style", "font-weight:bold");
+							dotLoading.innerHTML = "<p>Final Board:</p>";
+							dotLoading?.setAttribute("class", "underline");
+							dotLoading = "";
+
+							let fBoard = document.getElementById("finalBoard");
+							boards[1].solve();
+							boards[1].fitness();
+							fBoard.innerHTML = boards[1].show();
+							fBoard.hidden = false;
+
+							document.getElementById("button")?.setAttribute("class", "line-through");
+							document.getElementById("restart").hidden = false;
+
+							window.clearInterval(dots);
+						},
+						1000 * (num * 2 - 4)
+					);
+				}
+				function solveOne(output, stateList) {
+					stateList.forEach((state) => {
+						state.hidden = true;
+					});
+
+					output.innerHTML = "<p>Solved:</p>";
+					let a = new Board(1);
+					stateList[0].innerHTML = a.show();
+					stateList[0].setAttribute("style", "flex");
+					stateList[0].hidden = false;
+
+					document.getElementById("button").hidden = true;
+					document.getElementById("restart").hidden = false;
+				}
+				function noSolutions(output, num, stateList) {
+					output.innerHTML = "<p>There are no possible solutions for N=" + num + "</p>";
+					if (num == 2) {
+						let boards = [
+							new Board(2),
+							new Board(2),
+							new Board(2),
+							new Board(2),
+							new Board(2),
+							new Board(2),
+						];
+						for (let i = 0; i < boards.length; i++) {
+							boards[i].fitness();
+
+							stateList[i].innerHTML = boards[i].show();
+							stateList[i].hidden = false;
+						}
+
+						document.getElementById("restart").hidden = false;
+					} else {
+						let boards = [
+							new Board(3),
+							new Board(3),
+							new Board(3),
+							new Board(3),
+							new Board(3),
+							new Board(3),
+						];
+						for (let i = 0; i < boards.length; i++) {
+							boards[i].fitness();
+
+							stateList[i].innerHTML = boards[i].show();
+							stateList[i].hidden = false;
+						}
+
+						document.getElementById("restart").hidden = false;
+					}
+				}
+				function waitRefresh(output) {
+					document.getElementById("button").hidden = true;
+					output.innerHTML = "<p>N is too large; too much computation for server</p>";
+					output.innerHTML += "Please wait";
+
+					let wait = document.getElementById("wait");
+					let dots = window.setInterval(function () {
+						if (wait.innerHTML.length > 3) {
+							wait.innerHTML = "";
+						} else {
+							wait.innerHTML += ".";
+						}
+					}, 200);
+
+					setTimeout(function () {
+						location.reload();
+					}, 3500);
+				}
+				function notSupported(output) {
+					document.getElementById("button").hidden = true;
+					output.innerHTML = "<p>Not supported</p>";
+
+					let wait = document.getElementById("wait");
+					let dots = window.setInterval(function () {
+						if (wait.innerHTML.length > 3) {
+							wait.innerHTML = "";
+						} else {
+							wait.innerHTML += ".";
+						}
+					}, 200);
+
+					setTimeout(function () {
+						location.reload();
+					}, 2000);
+				}
+				function restart() {
+					setTimeout(function () {
+						location.reload();
+					}, 200);
+				}
+				function changed() {
+					if (document.getElementById("output").textContent.length != 0) {
+						document.getElementById("button")?.setAttribute("disabled", "");
+						document.getElementById("button")?.setAttribute("class", "line-through");
+						document.getElementById("restart").hidden = false;
+					}
+				}
+
+				document.getElementById("button")?.addEventListener("click", handleClick);
+				document.getElementById("restart")?.addEventListener("click", restart);
+				document.getElementById("inputN")?.addEventListener("change", changed);
+			</script>
+		</body>
+	</center>
+</PageLayout>

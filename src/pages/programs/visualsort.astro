@@ -1,0 +1,203 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+---
+
+<PageLayout meta={{ title: "VisualSort" }}>
+	<h1 class="title mb-6"><center>VisualSort</center></h1>
+	<div>
+		<center>
+			Chech out the write up <a class="cactus-link" href="/posts/visualsort">here</a>!
+		</center>
+	</div>
+	<br />
+	<div>
+		<center>
+			<u>Defaults</u>: Algorithm: <b>Insertion Sort</b> | FPS: <b>60</b> | Elements: <b>20</b> | Rainbow:
+			<b>No</b>
+		</center>
+	</div>
+	<br /><hr /><br />
+	<center>
+		<body>
+			<label for="inputAlgorithm">Select the sorting algorithm:</label>
+			<select name="inputAlgorithm" id="inputAlgo">
+				<option value="1">Insertion Sort</option>
+				<option value="2">Merge Sort</option>
+				<option value="3">Quick Sort</option>
+				<option value="4">Radix Sort</option>
+			</select>
+			<br /><br />
+			<label for="inputN">Enter number of elements to sort (N):</label>
+			<select name="inputNum" id="inputN">
+				<option value="20">20</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+			</select>
+			<br /><br />
+			<label for="rainbow">Rainbow mode:</label>
+			<select name="rMode" id="rainbow">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</select>
+			<br /><br />
+			<button class="sm:hover:text-link" id="button">>>> Go <<<</button>
+			<br /><br /><hr /><br />
+			<div id="output"></div>
+			<span id="wait"></span>
+			<video hidden="true" id="videoPlayer" width="640" height="360" controls>
+				<source src="" type="video/mp4" />
+			</video>
+
+			<script>
+				var loading = false;
+
+				function handleClick() {
+					var input = document.getElementById("inputN").value;
+					var algo = document.getElementById("inputAlgo").value;
+					var rainbow = document.getElementById("rainbow").value;
+					var videoPlayer = document.getElementById("videoPlayer");
+					var output = document.getElementById("output");
+					var videoToShow = "../../src/assets/visualSort-assets/";
+					var delayMin = 4;
+					var delayMax = 10;
+
+					// insertion
+					if (algo == 1) {
+						delayMax = 11;
+						if (input == 20) {
+							delayMin = 6;
+							if (rainbow == 1) {
+								videoToShow += "IS-R-20.mp4";
+							} else {
+								videoToShow += "IS-20.mp4";
+							}
+						} else if (input == 30) {
+							delayMin = 8;
+							if (rainbow == 1) {
+								videoToShow += "IS-R-30.mp4";
+							} else {
+								videoToShow += "IS-30.mp4";
+							}
+						} else if (input == 40) {
+							delayMin = 9;
+							if (rainbow == 1) {
+								videoToShow += "IS-R-40.mp4";
+							} else {
+								videoToShow += "IS-40.mp4";
+							}
+						}
+					} // merge
+					else if (algo == 2) {
+						delayMax = 4;
+						if (input == 20) {
+							delayMin = 2;
+							if (rainbow == 1) {
+								videoToShow += "MS-R-20.mp4";
+							} else {
+								videoToShow += "MS-20.mp4";
+							}
+						} else if (input == 30) {
+							delayMin = 3;
+							if (rainbow == 1) {
+								videoToShow += "MS-R-30.mp4";
+							} else {
+								videoToShow += "MS-30.mp4";
+							}
+						} else if (input == 40) {
+							delayMin = 4;
+							if (rainbow == 1) {
+								videoToShow += "MS-R-40.mp4";
+							} else {
+								videoToShow += "MS-40.mp4";
+							}
+						}
+					} // quick
+					else if (algo == 3) {
+						delayMax = 6;
+						if (input == 20) {
+							delayMin = 2;
+							if (rainbow == 1) {
+								videoToShow += "QS-R-20.mp4";
+							} else {
+								videoToShow += "QS-20.mp4";
+							}
+						} else if (input == 30) {
+							delayMin = 4;
+							if (rainbow == 1) {
+								videoToShow += "QS-R-30.mp4";
+							} else {
+								videoToShow += "QS-30.mp4";
+							}
+						} else if (input == 40) {
+							delayMin = 5;
+							if (rainbow == 1) {
+								videoToShow += "QS-R-40.mp4";
+							} else {
+								videoToShow += "QS-40.mp4";
+							}
+						}
+					} // radix
+					else if (algo == 4) {
+						delayMax = 7;
+						if (input == 20) {
+							delayMin = 3;
+							if (rainbow == 1) {
+								videoToShow += "RS-R-20.mp4";
+							} else {
+								videoToShow += "RS-20.mp4";
+							}
+						} else if (input == 30) {
+							delayMin = 5;
+							if (rainbow == 1) {
+								videoToShow += "RS-R-30.mp4";
+							} else {
+								videoToShow += "RS-30.mp4";
+							}
+						} else if (input == 40) {
+							delayMin = 6;
+							if (rainbow == 1) {
+								videoToShow += "RS-R-40.mp4";
+							} else {
+								videoToShow += "RS-40.mp4";
+							}
+						}
+					}
+
+					loadVideo(output, videoPlayer, videoToShow, delayMin, delayMax);
+				}
+				function loadVideo(output, videoPlayer, video, delayMin, delayMax) {
+					if (!loading) {
+						loading = true;
+
+						videoPlayer.hidden = true;
+						var delay = Math.floor(Math.random() * (delayMax - delayMin + 1)) + delayMin;
+						output.innerHTML = "<p>Loading, Please wait</p>";
+
+						var wait = document.getElementById("wait");
+						wait.hidden = false;
+						var dots = window.setInterval(function () {
+							if (wait.innerHTML.length > 3) {
+								wait.innerHTML = "";
+							} else {
+								wait.innerHTML += ".";
+							}
+						}, 200);
+
+						setTimeout(function () {
+							output.innerHTML = "";
+							wait.hidden = true;
+							videoPlayer.src = video;
+							videoPlayer.hidden = false;
+							wait = "";
+
+							window.clearInterval(dots);
+							loading = false;
+						}, delay * 1000);
+					}
+				}
+
+				document.getElementById("button")?.addEventListener("click", handleClick);
+			</script>
+		</body>
+	</center>
+</PageLayout>
