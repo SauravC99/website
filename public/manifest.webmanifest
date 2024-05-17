@@ -1,7 +1,7 @@
 {
-	"name": "Saurav Chhapawala Website",
-	"short_name": "Saurav Site",
-	"description": "What I've been up to",
+	"name": "Saurav's Website",
+	"short_name": "Saurav_Website",
+	"description": "What I've been up to and my projects",
 	"icons": [
 		{
 			"src": "/192x192.png",
