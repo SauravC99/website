@@ -2,9 +2,11 @@
   Saurav's Website
 </h1>
 
-Work In Progress
-
 Welcome to my website!
+
+<https://sauravch.com>
+
+This is my blog and project showcase, I hope you enjoy :)
 
 ## Info
 
