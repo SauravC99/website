@@ -193,6 +193,13 @@ import PageLayout from "@/layouts/Base.astro";
 							window.clearInterval(dots);
 							loading = false;
 						}, delay * 1000);
+
+						setTimeout(
+							function () {
+								videoPlayer.scrollIntoView(true);
+							},
+							delay * 1000 + 100
+						);
 					}
 				}
 

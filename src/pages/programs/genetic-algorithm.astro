@@ -201,6 +201,7 @@ import PageLayout from "@/layouts/Base.astro";
 						stateList[i].innerHTML = boards[i].show();
 						stateList[i].hidden = false;
 					}
+					output.scrollIntoView(true);
 
 					let loading = document.getElementById("loadingPart");
 					loading.innerHTML = "<p>Working, please wait</p>";
@@ -230,6 +231,8 @@ import PageLayout from "@/layouts/Base.astro";
 
 							document.getElementById("button")?.setAttribute("class", "line-through");
 							document.getElementById("restart").hidden = false;
+
+							document.getElementById("restart").scrollIntoView(true);
 
 							window.clearInterval(dots);
 						},
