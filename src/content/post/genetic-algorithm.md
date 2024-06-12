@@ -1,7 +1,7 @@
 ---
 title: Genetic Algorithm - N Queens Problem
 description: "Solving the N Queens problem using a genetic algorithm."
-publishDate: September 13 2023
+publishDate: September 19 2023
 tags: ["python", "algorithm", "genetic", "demo"]
 draft: false
 ---

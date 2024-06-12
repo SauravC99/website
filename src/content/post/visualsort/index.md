@@ -1,8 +1,8 @@
 ---
 title: VisualSort
 description: "Visualize sorting algorithms and generate beautiful videos with sound."
-publishDate: March 15 2024
-tags: ["python", "sorting", "demo"]
+publishDate: March 21 2024
+tags: ["python", "sorting", "demo", "visualsort"]
 coverImage:
   src: "./MergeR30-30.gif"
   alt: "Gif of merge sort rainbow"
