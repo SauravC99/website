@@ -21,6 +21,9 @@ I saw a video on Youtube about visualizing sorting algorithms and became inspire
 
 VisualSort allows you to visualize 15+ different algorithms:
 
+<details>
+<summary>Expand</summary>
+
 - Bogo Sort
 - Bubble Sort
 - Cocktail Shaker Sort
@@ -37,6 +40,8 @@ VisualSort allows you to visualize 15+ different algorithms:
 - Selection Sort
 - Shell Sort
 - Tim Sort
+
+</details>
 
 It is written in python and is very easy to use!
 
