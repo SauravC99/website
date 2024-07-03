@@ -42,11 +42,12 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 	},
 	{
 		title: "Programs",
-		path: "/programs/"
-	}
+		path: "/programs/",
+	},
 ];
 
 export const footerSocialLinks: Array<{ title: string; path: string }> = [
+	/*
 	{
 		title: "LinkedIn",
 		path: "https://www.linkedin.com/in/saurav-chhapawala/",
@@ -59,7 +60,12 @@ export const footerSocialLinks: Array<{ title: string; path: string }> = [
 		title: "Email",
 		path: "mailto:saurav.chhapawala@gmail.com",
 	},
-]
+	*/
+	{
+		title: "Contact",
+		path: "/contact/",
+	},
+];
 
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
