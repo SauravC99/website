@@ -91,6 +91,7 @@ Implemented Toastify js inline here to be able to edit and extend the library
 			stopOnFocus: true,
 			//
 			progressBar: true,
+			progressBarStyle: {},
 			progressBarPosition: "bottom",
 			//
 			onClick: function () {},
@@ -140,6 +141,8 @@ Implemented Toastify js inline here to be able to edit and extend the library
 				//
 				this.options.progressBar =
 					options.progressBar === true ? Toastify.defaults.progressBar : options.progressBar;
+				this.options.progressBarStyle =
+					options.progressBarStyle || Toastify.defaults.progressBarStyle;
 				this.options.progressBarPosition =
 					options.progressBarPosition || Toastify.defaults.progressBarPosition; // progress bar position - top or bottom
 				//
