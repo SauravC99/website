@@ -89,8 +89,10 @@ Implemented Toastify js inline here to be able to edit and extend the library
 			avatar: "",
 			className: "",
 			stopOnFocus: true,
+			//
 			progressBar: true,
 			progressBarPosition: "bottom",
+			//
 			onClick: function () {},
 			offset: { x: 0, y: 0 },
 			escapeMarkup: true,
@@ -135,6 +137,12 @@ Implemented Toastify js inline here to be able to edit and extend the library
 				this.options.className = options.className || Toastify.defaults.className; // additional class names for the toast
 				this.options.stopOnFocus =
 					options.stopOnFocus === undefined ? Toastify.defaults.stopOnFocus : options.stopOnFocus; // stop timeout on focus
+				//
+				this.options.progressBar =
+					options.progressBar === true ? Toastify.defaults.progressBar : options.progressBar;
+				this.options.progressBarPosition =
+					options.progressBarPosition || Toastify.defaults.progressBarPosition; // progress bar position - top or bottom
+				//
 				this.options.onClick = options.onClick || Toastify.defaults.onClick; // Callback after click
 				this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
 				this.options.escapeMarkup =
