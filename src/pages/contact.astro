@@ -277,7 +277,8 @@ Implemented Toastify js inline here to be able to edit and extend the library
 					// Progress bar background
 
 					var progressBarBg = document.createElement("div");
-					progressBarBg.style = "width: 100%; display: block; position: absolute; left: 0;";
+					progressBarBg.style =
+						"width: 99.4%; display: block; position: absolute; left: 0.9px; border-radius: 2px;";
 					progressBarBg.style.background = this.options.progressBarStyle.background;
 					progressBarBg.style.height = this.options.progressBarStyle.height;
 
@@ -295,7 +296,7 @@ Implemented Toastify js inline here to be able to edit and extend the library
 
 					var progressBar = document.createElement("div");
 					progressBar.style =
-						"width: 0%; height: 5px; background: " +
+						"width: 0%; height: 5px; border-radius: 2px; background: " +
 						this.options.progressBarStyle.barBackground +
 						";";
 					progressBar.className = "toast-progress-bar";
