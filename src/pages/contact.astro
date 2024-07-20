@@ -1,5 +1,6 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
+import { Icon } from "astro-icon/components";
 
 const socialLinks: {
 	friendlyName: string;
@@ -28,7 +29,8 @@ const socialLinks: {
 <PageLayout meta={{ title: "Contact Me Page" }}>
 	<h1 class="title mb-6">Contact Me!</h1>
 	<div class="text-[1.05rem]">
-		<div class="flex">
+		<div class="flex space-x-2">
+			<Icon aria-hidden="true" class="h-5 w-5" focusable="false" name="mdi:email-outline" />
 			<div>Email:</div>
 		</div>
 		<div class="mt-4 inline-flex space-x-2">
@@ -40,7 +42,8 @@ const socialLinks: {
 			{
 				socialLinks.map(({ friendlyName, link, name }) => (
 					<li>
-						<a class="flex sm:hover:text-link" href={link} target="_blank">
+						<a class="flex space-x-2 sm:hover:text-link" href={link} target="_blank">
+							<Icon aria-hidden="true" class="h-5 w-5" focusable="false" name={name} />
 							<span>{friendlyName}</span>
 						</a>
 					</li>
