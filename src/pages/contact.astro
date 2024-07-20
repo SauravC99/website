@@ -568,3 +568,24 @@ Implemented Toastify js inline here to be able to edit and extend the library
 		return Toastify;
 	});
 </script>
+
+<script>
+	const email = document.getElementById("email");
+
+	email.onclick = function () {
+		Toastify({
+			text: "Copied!",
+			duration: 2500,
+			style: {
+				background: "#2ecc71",
+			},
+			progressBar: true,
+			progressBarStyle: {
+				background: "gray",
+				barBackground: "red",
+				height: "5px",
+			},
+			progressBarPosition: "bottom",
+		}).showToast();
+	};
+</script>
