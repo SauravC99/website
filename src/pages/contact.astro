@@ -581,6 +581,8 @@ Implemented Toastify js inline here to be able to edit and extend the library
 	const email = document.getElementById("email");
 
 	email.onclick = function () {
+		navigator.clipboard.writeText(email.innerHTML);
+
 		Toastify({
 			text: "Copied!",
 			duration: 2500,
